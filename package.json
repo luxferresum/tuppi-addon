@@ -21,8 +21,10 @@
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^3.0.0",
+    "ember-auto-import": "^1.2.3",
     "ember-cli-babel": "^6.6.0",
-    "remark": "^9.0.0"
+    "ember-cli-htmlbars": "^2.0.1",
+    "unified": "^7.0.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -30,7 +32,6 @@
     "ember-cli": "~3.0.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.1",
-    "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.1.1",

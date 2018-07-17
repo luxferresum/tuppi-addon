@@ -31,7 +31,7 @@ TemplateParser.prototype.build = function() {
     }, []);
 
   const content = `
-    define('tuppi-addon', [], function() {
+    define('tuppi-slides', [], function() {
       return ${JSON.stringify(data)};
      });
   `;
