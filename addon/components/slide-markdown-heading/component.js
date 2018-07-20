@@ -4,4 +4,7 @@ import layout from './template';
 export default Component.extend({
   layout,
   tagName: '',
+  didReceiveAttrs() {
+    this.set('tagName', `h${this.node.depth}`);
+  },
 });

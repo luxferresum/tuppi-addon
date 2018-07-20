@@ -1,0 +1,9 @@
+{{#if this.node.ordered}}
+  <ol>
+    {{slide-markdown-children children=this.node.children}}
+  </ol>
+{{else}}
+  <ul>
+    {{slide-markdown-children children=this.node.children}}
+  </ul>
+{{/if}}

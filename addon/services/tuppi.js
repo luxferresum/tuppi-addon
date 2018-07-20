@@ -16,8 +16,9 @@ const transforms = {
     const slide = {children: []};
 
     function run(source, target) {
-      target.type = source.type;
-      target.value = source.value;
+      Object.keys(source)
+        .filter(n => !['position'].includes(n))
+        .forEach(k => target[k] = source[k]);
       target.children = [];
 
       for(let childSource of (source.children || [])) {
@@ -40,14 +41,18 @@ const transforms = {
       node.children.forEach(c => removeStepNodes(c));
     }
 
-    function removeEmptyParagraphs(node) {
-      node.children = node.children
-        .filter(c => c.type !== 'paragraph' || c.children.length > 0);
-      node.children.forEach(c => removeEmptyParagraphs(c));
+    function removeEmpty(type) {
+      return function removeThings(node) {
+        node.children = node.children
+        .filter(c => c.type !== type || c.children.length > 0);
+      node.children.forEach(c => removeThings(c));
+      }
     }
 
     steps.forEach(s => removeStepNodes(s));
-    steps.forEach(s => removeEmptyParagraphs(s));
+    steps.forEach(s => removeEmpty('paragraph')(s));
+    steps.forEach(s => removeEmpty('listItem')(s));
+    steps.forEach(s => removeEmpty('list')(s));
 
     return {type, slide: steps.slice(-1)[0], steps};
   }

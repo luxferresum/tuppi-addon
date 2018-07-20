@@ -1,0 +1,3 @@
+{{#each children as |child|}}
+  {{component (concat 'slide-markdown-' (tuppi-dasherize child.type)) node=child}}
+{{/each}}
