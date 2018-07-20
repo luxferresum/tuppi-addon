@@ -13,7 +13,7 @@ const transforms = {
   markdown({ type, content }) {
     let ast = processor.parse(content);
     let steps = [];
-    const root = {children: []};
+    const slide = {children: []};
 
     function run(source, target) {
       target.type = source.type;
@@ -27,12 +27,29 @@ const transforms = {
       }
 
       if(source.type === 'step') {
-        steps.push(JSON.parse(JSON.stringify(root)));
+        steps.push(JSON.parse(JSON.stringify(slide)));
       }
     }
-    const slide = run(ast, root);
+
+    run(ast, slide);
     steps.push(slide);
-    return {type, slide, steps};
+
+    function removeStepNodes(node) {
+      node.children = node.children
+        .filter(c => c.type !== 'step');
+      node.children.forEach(c => removeStepNodes(c));
+    }
+
+    function removeEmptyParagraphs(node) {
+      node.children = node.children
+        .filter(c => c.type !== 'paragraph' || c.children.length > 0);
+      node.children.forEach(c => removeEmptyParagraphs(c));
+    }
+
+    steps.forEach(s => removeStepNodes(s));
+    steps.forEach(s => removeEmptyParagraphs(s));
+
+    return {type, slide: steps.slice(-1)[0], steps};
   }
 }
 
