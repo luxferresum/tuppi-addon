@@ -1,3 +1,13 @@
-{{#each tuppi.slides as |slide|}}
-  {{slide.name}}
-{{/each}}
+<div>
+  Slideset: {{this.slideset}}<br>
+  Slide: {{this.slide}}<br>
+  Step: {{this.step}}
+</div>
+
+{{#with (get this.tuppi.slidesets this.slideset) as |slideset|}}
+  {{#with (get slideset this.slide) as |slide|}}
+    {{#with (get slide stepGetter) as |step|}}
+      {{component (concat 'slide-' slide.type) slide=step}}
+    {{/with}}
+  {{/with}}
+{{/with}}

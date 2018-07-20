@@ -1,0 +1,1 @@
+export { default } from 'tuppi-addon/components/slide-titlepage/component';

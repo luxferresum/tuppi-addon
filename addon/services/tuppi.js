@@ -54,7 +54,7 @@ const transforms = {
 }
 
 const slidesets = slidesetsraw.map(str => {
-  jsYaml.safeLoadAll(str.content).map(slide => {
+  return jsYaml.safeLoadAll(str.content).map(slide => {
     const {type} = slide;
     if(transforms[type]) {
       return transforms[slide.type](slide);
