@@ -1,3 +1,3 @@
-import Resolver from '../../../../../../../Library/Caches/typescript/2.9/node_modules/@types/ember-resolver/index';
+import Resolver from 'ember-resolver';
 
 export default Resolver;

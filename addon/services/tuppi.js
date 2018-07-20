@@ -86,7 +86,7 @@ export default Service.extend({
     slide = parseInt(slide);
     step = parseInt(step);
 
-    if(0 <= step -1) {
+    if(step - 1 >= 0) {
       return [slideset, slide, step - 1];
     }
 
@@ -96,11 +96,11 @@ export default Service.extend({
     }
 
     const [previousSlideset, previousSlide] = prev;
-    return previousSlide && [
+    return prev && [
       previousSlideset,
       previousSlide,
       this.slidesets[previousSlideset][previousSlide].steps.length -1,
-    ];
+    ] || null;
   },
   previousSlide(slideset, slide) {
     slideset = parseInt(slideset);
