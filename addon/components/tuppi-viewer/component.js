@@ -9,9 +9,9 @@ export default Component.extend({
   slideset: 0,
   slide: 0,
   step: 0,
-  stepGetter: computed('step', 'steps', {
+  stepGetter: computed('step', 'showSteps', {
     get() {
-      if(this.steps) {
+      if(this.showSteps) {
         return `steps.${this.step}`;
       }
       return 'slide';

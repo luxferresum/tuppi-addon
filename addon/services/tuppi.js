@@ -69,4 +69,65 @@ const slidesets = slidesetsraw.map(str => {
 
 export default Service.extend({
   slidesets,
+  nextStep(slideset, slide, step) {
+    slideset = parseInt(slideset);
+    slide = parseInt(slide);
+    step = parseInt(step);
+
+    if(this.slidesets[slideset][slide].steps.length > step + 1) {
+      return [slideset, slide, step + 1];
+    }
+
+    const nextSlide = this.nextSlide(slideset, slide);
+    return nextSlide && [...nextSlide, 0];
+  },
+  previousStep(slideset, slide, step) {
+    slideset = parseInt(slideset);
+    slide = parseInt(slide);
+    step = parseInt(step);
+
+    if(0 <= step -1) {
+      return [slideset, slide, step - 1];
+    }
+
+    const prev = this.previousSlide(slideset, slide);
+    if(!prev) {
+      return null;
+    }
+
+    const [previousSlideset, previousSlide] = prev;
+    return previousSlide && [
+      previousSlideset,
+      previousSlide,
+      this.slidesets[previousSlideset][previousSlide].steps.length -1,
+    ];
+  },
+  previousSlide(slideset, slide) {
+    slideset = parseInt(slideset);
+    slide = parseInt(slide);
+
+    if(0 <= slide - 1) {
+      return [slideset, slide - 1];
+    }
+
+    if(0 <= slideset - 1) {
+      return [slideset - 1, this.slidesets[slideset - 1].length -1];
+    }
+
+    return null;
+  },
+  nextSlide(slideset, slide) {
+    slideset = parseInt(slideset);
+    slide = parseInt(slide);
+
+    if(this.slidesets[slideset].length > slide + 1) {
+      return [slideset, slide + 1];
+    }
+
+    if(this.slidesets.length > slideset + 1) {
+      return [slideset + 1, 0];
+    }
+
+    return null;
+  },
 });

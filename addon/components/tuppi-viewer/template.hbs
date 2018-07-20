@@ -1,9 +1,3 @@
-<div>
-  Slideset: {{this.slideset}}<br>
-  Slide: {{this.slide}}<br>
-  Step: {{this.step}}
-</div>
-
 {{#with (get this.tuppi.slidesets this.slideset) as |slideset|}}
   {{#with (get slideset this.slide) as |slide|}}
     {{#with (get slide stepGetter) as |step|}}
@@ -11,3 +5,10 @@
     {{/with}}
   {{/with}}
 {{/with}}
+
+{{#if previousLink}}
+  {{#component previousLink}}previous{{/component}}
+{{/if}}
+{{#if nextLink}}
+  {{#component nextLink}}next{{/component}}
+{{/if}}

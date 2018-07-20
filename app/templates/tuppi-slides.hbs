@@ -1,0 +1,8 @@
+{{tuppi-viewer
+  showSteps=true
+  slideset=model.slideset
+  slide=model.slide
+  step=model.step
+  nextLink=(if nextArgs (component 'link-to' 'tuppi-slides' nextSlideset nextSlide nextStep))
+  previousLink=(if previousArgs (component 'link-to' 'tuppi-slides' previousSlideset previousSlide previousStep))
+}}
