@@ -1,0 +1,55 @@
+html, body {
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.tuppi__next {
+  position: fixed;
+  right: 0;
+  width: 100px;
+  bottom: 0;
+  top: 0;
+}
+
+.tuppi__previous {
+  position: fixed;
+  left: 0;
+  width: 100px;
+  bottom: 0;
+  top: 0;
+}
+
+.slide {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.slide.titlepage {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas:
+    ". .     ."
+    ". title ."
+    ". .     .";
+}
+
+.slide.titlepage h1 {
+  grid-area: title;
+  font-size: 4rem;
+}
+
+.slide.markdown {
+  padding: 2rem;
+}
+
+.slide.markdown > h1:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}

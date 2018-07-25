@@ -16,5 +16,26 @@ export default Component.extend({
       }
       return 'slide';
     }
-  })
+  }),
+
+  listener: computed({
+    get() {
+      return event => {
+        switch (event.key) {
+          case 'ArrowLeft':
+            this.element.querySelector('.tuppi__previous').click();
+            break;
+          case 'ArrowRight':
+            this.element.querySelector('.tuppi__next').click();
+            break;
+        }
+      };
+    },
+  }),
+  didInsertElement() {
+    window.addEventListener('keydown', this.listener);
+  },
+  willDestroyElement() {
+    window.removeEventListener('keydown', this.listener);
+  },
 });

@@ -1,3 +1,5 @@
+{{tuppi-fonts}}
+
 {{#with (get this.tuppi.slidesets this.slideset) as |slideset|}}
   {{#with (get slideset this.slide) as |slide|}}
     {{#with (get slide stepGetter) as |step|}}
@@ -7,8 +9,9 @@
 {{/with}}
 
 {{#if previousLink}}
-  {{#component previousLink}}previous{{/component}}
+  {{#component previousLink class='tuppi__previous'}}{{/component}}
 {{/if}}
+
 {{#if nextLink}}
-  {{#component nextLink}}next{{/component}}
+  {{#component nextLink class='tuppi__next'}}{{/component}}
 {{/if}}
