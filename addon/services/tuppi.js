@@ -74,6 +74,29 @@ const slidesets = slidesetsraw.map(str => {
 
 export default Service.extend({
   slidesets,
+  init() {
+    this._super(...arguments);
+    this.channel = new BroadcastChannel('tuppi');
+    this.updateListeners = [];
+    this.channel.addEventListener('message', ({data}) => {
+      this.updateListeners.forEach(l => {
+        l(data.slideset, data.slide, data.step);
+      });
+    });
+  },
+  broadcastUpdate(slideset, slide, step) {
+    this.channel.postMessage({
+      slideset, slide, step
+    });
+  },
+
+  registerUpdateListener(listener) {
+    this.updateListeners.push(listener);
+  },
+  unregisterUpdateListener(listener) {
+    this.updateListeners = this.updateListeners.filter(l => l !== listener);
+  },
+
   nextStep(slideset, slide, step) {
     slideset = parseInt(slideset);
     slide = parseInt(slide);
