@@ -10,10 +10,15 @@ let processor = unified()
   .use(step);
 
 const transforms = {
-  markdown({ type, content }) {
+  markdown(yml) {
+    const { type, content } = yml;
+
     let ast = processor.parse(content);
     let steps = [];
     const slide = {children: []};
+    Object.keys(yml)
+      .filter(k => k !== 'content')
+      .forEach(k => slide[k] = yml[k])
 
     function run(source, target) {
       Object.keys(source)
