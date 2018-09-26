@@ -3,6 +3,8 @@ html, body {
   padding: 0;
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .tuppi__next {
@@ -52,4 +54,31 @@ html, body {
 .slide.markdown > h1:first-child {
   padding-top: 0;
   margin-top: 0;
+}
+
+.tuppi-notes {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+
+  display: grid;
+  grid-template:
+    "slides clock" 100px
+    "slides ." 2fr
+    "notes notes" 1fr
+    / auto 100px;
+}
+
+.tuppi-notes__slide {
+  grid-area: slides;
+  box-sizing: border-box;
+  border-top: none;
+  border-left: none;
+  border: 1px solid black;
+}
+
+.tuppi-notes__step {
+
 }

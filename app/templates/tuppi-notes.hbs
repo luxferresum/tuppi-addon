@@ -1,5 +1,29 @@
-{{tuppi-viewer
-  showSteps=false
-  slideset=model.slideset
-  slide=model.slide
-}}
+<div class="tuppi-notes">
+  <section class="tuppi-notes__slide">
+    {{tuppi-viewer
+      showSteps=false
+      slideset=model.slideset
+      slide=model.slide
+      nextLink=(if nextArgs (component 'link-to' 'tuppi-notes' nextSlideset nextSlide nextStep))
+      previousLink=(if previousArgs (component 'link-to' 'tuppi-notes' previousSlideset previousSlide previousStep))
+    }}
+  </section>
+  <section class="tuppi-notes__step">
+    {{tuppi-viewer
+      slideset=model.slideset
+      slide=model.slide
+      step=model.step
+      nextLink=(if nextArgs (component 'link-to' 'tuppi-notes' nextSlideset nextSlide nextStep))
+      previousLink=(if previousArgs (component 'link-to' 'tuppi-notes' previousSlideset previousSlide previousStep))
+    }}
+  </section>
+
+  {{!-- {{tuppi-viewer
+    showSteps=true
+    slideset=model.slideset
+    slide=model.slide
+    step=model.step
+  }} --}}
+
+  </section>
+</div>
